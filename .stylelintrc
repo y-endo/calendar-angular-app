@@ -1,0 +1,16 @@
+{
+  "plugins": ["stylelint-scss", "stylelint-order"],
+  "extends": ["stylelint-config-standard", "stylelint-config-rational-order"],
+  "rules": {
+    "no-empty-source": null,
+    "font-weight-notation": null,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "max-empty-lines": 2,
+    "comment-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "media-feature-name-no-unknown": [true, {
+      "ignoreMediaFeatureNames": ["display-mode"]
+    }],
+  }
+}

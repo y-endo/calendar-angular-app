@@ -2,7 +2,18 @@
 
 @import '../../../assets/scss/import';
 
-header {
+.header {
+  display: flex;
+  align-items: center;
   padding: 20px;
   border-bottom: solid 1px #ccc;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.text {
+  margin: 0 0 0 15px;
 }

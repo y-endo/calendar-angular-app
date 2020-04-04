@@ -1,1 +1,24 @@
-<p>calendar works!</p>
+<div class="calendar">
+  <div class="calendar-info">
+    <p class="calendar-current">{{ currentYear }}/{{ currentMonth }}</p>
+    <ul class="calendar-nav">
+      <li class="calendar-nav__item"><button class="calendar-nav__button" (click)="prevMonth()">&lt;</button></li>
+      <li class="calendar-nav__item"><button class="calendar-nav__button" (click)="nextMonth()">&gt;</button></li>
+    </ul>
+  </div>
+  <div class="calendar-week calendar-head">
+    <div *ngFor="let day of dayArray" class="calendar-date calendar-day">{{ day }}</div>
+  </div>
+  <div *ngFor="let week of calendarArray" class="calendar-week">
+    <div
+      *ngFor="let date of week;"
+      class="calendar-date"
+      [class.calendar-date--not-current-month]="!isThisMonth(date)"
+      [class.calendar-date--current]="isToday(date)"
+    >
+      <p class="text-date">
+        {{ formatDate(date).date }}
+      </p>
+    </div>
+  </div>
+</div>

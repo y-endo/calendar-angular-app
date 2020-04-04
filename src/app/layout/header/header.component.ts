@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarService } from 'src/app/shared/services/calendar.service';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  today: string;
 
-  ngOnInit(): void {}
+  constructor(private calendarService: CalendarService) {}
+
+  ngOnInit(): void {
+    this.today = this.calendarService.getToday().formatted;
+  }
 }
