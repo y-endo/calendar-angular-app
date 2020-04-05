@@ -11,7 +11,8 @@ export class CalendarComponent implements OnInit {
   currentMonth: number;
   currentDate: number;
   dayArray = ['日', '月', '火', '水', '木', '金', '土'];
-  calendarArray: Date[][];
+  calendarArray: Date[][] = [];
+  holidayArray: string[] = [];
 
   constructor(private calendarService: CalendarService) {}
 
@@ -21,10 +22,28 @@ export class CalendarComponent implements OnInit {
     this.currentMonth = today.month;
     this.currentDate = today.date;
     this.calendarArray = this.calendarService.getCalendarArray();
+    this.setHoliday(this.currentYear);
+  }
+
+  setHoliday(year: number) {
+    this.calendarService.getHoliday(year).subscribe(
+      (data) => {
+        this.holidayArray = data.items.map((item) => item.start.date);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   formatDate(date: Date) {
     return this.calendarService.formatDate(date);
+  }
+
+  isHoliday(targetDate: Date) {
+    if (!this.holidayArray.length) return false;
+    const { formatted } = this.calendarService.formatDate(targetDate);
+    return this.holidayArray.includes(formatted);
   }
 
   isToday(targetDate: Date) {
@@ -44,18 +63,24 @@ export class CalendarComponent implements OnInit {
 
   prevMonth() {
     this.currentMonth -= 1;
-    if (this.currentMonth < 1) {
-      this.currentYear -= 1;
-      this.currentMonth = 12;
-    }
-    this.calendarArray = this.calendarService.getCalendarArray({ year: this.currentYear, month: this.currentMonth });
+    this.changeCalendar();
   }
 
   nextMonth() {
     this.currentMonth += 1;
+    this.changeCalendar();
+  }
+
+  changeCalendar() {
+    if (this.currentMonth < 1) {
+      this.currentYear -= 1;
+      this.currentMonth = 12;
+      this.setHoliday(this.currentYear);
+    }
     if (this.currentMonth > 12) {
       this.currentYear += 1;
       this.currentMonth = 1;
+      this.setHoliday(this.currentYear);
     }
     this.calendarArray = this.calendarService.getCalendarArray({ year: this.currentYear, month: this.currentMonth });
   }

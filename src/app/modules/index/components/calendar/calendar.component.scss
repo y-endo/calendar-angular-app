@@ -65,6 +65,10 @@
     background: #eee;
   }
 
+  &.calendar-date-holiday {
+    color: red;
+  }
+
   &.calendar-date--current {
     box-shadow: 1px 1px 0 blue inset, -1px -1px 0 blue inset;
   }

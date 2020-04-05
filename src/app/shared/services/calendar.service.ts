@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { format, eachDayOfInterval, endOfWeek, eachWeekOfInterval, startOfMonth, endOfMonth } from 'date-fns';
+import { Observable } from 'rxjs';
 
 type FormatDate = {
   formatted: string;
@@ -12,7 +14,7 @@ type FormatDate = {
   providedIn: 'root',
 })
 export class CalendarService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   formatDate(date: Date): FormatDate {
     const formatted = format(date, 'yyyy-MM-dd');
@@ -47,5 +49,10 @@ export class CalendarService {
 
   getToday(): FormatDate {
     return this.formatDate(new Date());
+  }
+
+  getHoliday(year: number): Observable<any> {
+    //Googleカレンダーから、指定年の祝日情報をJSON形式で取得するためのURL
+    return this.http.get(`/api/holiday?year=${year}`);
   }
 }

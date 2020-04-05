@@ -15,6 +15,7 @@
       class="calendar-date"
       [class.calendar-date--not-current-month]="!isThisMonth(date)"
       [class.calendar-date--current]="isToday(date)"
+      [class.calendar-date-holiday]="isHoliday(date)"
     >
       <p class="text-date">
         {{ formatDate(date).date }}
