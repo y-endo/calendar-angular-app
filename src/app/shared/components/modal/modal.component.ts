@@ -7,7 +7,26 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
+  isOpen = false;
+  currentComponent = null;
+
   constructor(private modalService: ModalService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.modalService.currentComponent$.subscribe((component) => {
+      this.currentComponent = component;
+    });
+
+    this.modalService.isOpen$.subscribe((value) => {
+      this.isOpen = value;
+    });
+  }
+
+  close() {
+    this.modalService.closeModal();
+  }
+
+  stopPropagation(event: MouseEvent) {
+    event.stopPropagation();
+  }
 }

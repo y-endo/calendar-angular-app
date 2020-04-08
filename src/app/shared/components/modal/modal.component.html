@@ -1,1 +1,5 @@
-<p>modal works!</p>
+<div class="modal" [class.modal--visible]="isOpen" (click)="close()">
+  <div class="modal__inner" (click)="stopPropagation($event)">
+    <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+  </div>
+</div>

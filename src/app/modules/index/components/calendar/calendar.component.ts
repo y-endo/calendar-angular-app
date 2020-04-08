@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/shared/services/calendar.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { FormScheduleComponent } from '../form-schedule/form-schedule.component';
 
 @Component({
   selector: 'app-calendar',
@@ -14,7 +16,7 @@ export class CalendarComponent implements OnInit {
   calendarArray: Date[][] = [];
   holidayArray: string[] = [];
 
-  constructor(private calendarService: CalendarService) {}
+  constructor(private calendarService: CalendarService, private modalService: ModalService) {}
 
   ngOnInit(): void {
     const today = this.calendarService.getToday();
@@ -83,5 +85,10 @@ export class CalendarComponent implements OnInit {
       this.setHoliday(this.currentYear);
     }
     this.calendarArray = this.calendarService.getCalendarArray({ year: this.currentYear, month: this.currentMonth });
+  }
+
+  openModal() {
+    this.modalService.setModal(FormScheduleComponent);
+    this.modalService.openModal();
   }
 }
