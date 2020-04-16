@@ -13,6 +13,7 @@
     <div
       *ngFor="let date of week;"
       class="calendar-date"
+      [attr.data-time]="formatDate(date).formatted"
       [class.calendar-date--not-current-month]="!isThisMonth(date)"
       [class.calendar-date--current]="isToday(date)"
       [class.calendar-date-holiday]="isHoliday(date)"

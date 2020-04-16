@@ -10,6 +10,11 @@ export class FormScheduleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
 }

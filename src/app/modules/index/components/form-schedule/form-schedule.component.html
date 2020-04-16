@@ -1,1 +1,17 @@
-<p>form-schedule works!</p>
+<form (submit)="handleSubmit($event)">
+  <p class="input-container">
+    <label>タイトル</label>
+    <input type="text" placeholder="タイトル">
+  </p>
+  <p class="input-container">
+    <label>時間</label>
+    <input type="time">
+  </p>
+  <p class="input-container">
+    <label>内容</label>
+    <input type="text" placeholder="内容">
+  </p>
+  <p class="input-container">
+    <button>登録</button>
+  </p>
+</form>
