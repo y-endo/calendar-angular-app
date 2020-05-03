@@ -1,5 +1,5 @@
-<div class="modal" [class.modal--visible]="isOpen" (click)="close()">
-  <div class="modal__inner" (click)="stopPropagation($event)">
-    <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+<div class="modal" [class.modal--visible]="isOpen$ | async" (click)="close()">
+  <div class="modal__inner" (click)="handleClickInner($event)">
+    <ng-container *ngComponentOutlet="currentComponent$ | async"></ng-container>
   </div>
 </div>
