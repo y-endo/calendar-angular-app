@@ -1,15 +1,15 @@
-<form (submit)="handleSubmit($event)">
+<form [formGroup]="form" (submit)="handleSubmit($event)">
   <p class="input-container">
     <label>タイトル</label>
-    <input type="text" placeholder="タイトル">
+    <input type="text" formControlName="title" placeholder="タイトル">
   </p>
   <p class="input-container">
     <label>時間</label>
-    <input type="time">
+    <input type="time" formControlName="time">
   </p>
   <p class="input-container">
     <label>内容</label>
-    <input type="text" placeholder="内容">
+    <input type="text" formControlName="description" placeholder="内容">
   </p>
   <p class="input-container">
     <button>登録</button>
