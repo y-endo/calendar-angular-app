@@ -1,5 +1,0 @@
-<div class="modal" [class.modal--visible]="isOpen$ | async" (click)="close()">
-  <div class="modal__inner" (click)="handleClickInner($event)">
-    <ng-container *ngComponentOutlet="currentComponent$ | async"></ng-container>
-  </div>
-</div>
